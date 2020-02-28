@@ -53,4 +53,35 @@ app.post("/signup", (req, res) => {
   res.json(db.users[db.users.length - 1]);
 });
 
+app.get("/profile/:id", (req, res) => {
+  const { id } = req.params;
+  let userFound = false;
+
+  db.users.forEach(user => {
+    if (user.id === id) {
+      userFound = true;
+      return res.json(user);
+    }
+  });
+  if (!userFound) {
+    res.status(404).json("no such user");
+  }
+});
+
+app.put("/image", (req, res) => {
+  const { id } = req.body;
+  let userFound = false;
+
+  db.users.forEach(user => {
+    if (user.id === id) {
+      userFound = true;
+      user.entries++;
+      return res.json(user.entries);
+    }
+  });
+  if (!userFound) {
+    res.status(404).json("no such user");
+  }
+});
+
 app.listen(3000);
