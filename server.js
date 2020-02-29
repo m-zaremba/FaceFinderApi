@@ -1,8 +1,11 @@
 import express from "express";
+import bcrypt from "bcryptjs";
+import cors from 'cors';
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 const db = {
   users: [
@@ -22,6 +25,13 @@ const db = {
       entries: 0,
       joined: new Date()
     }
+  ],
+  login: [
+    {
+      id: "999",
+      hash: "",
+      email: "corvo_attano@carnacca.ry"
+    }
   ]
 };
 
@@ -30,6 +40,18 @@ app.get("/", (req, res) => {
 });
 
 app.post("/signin", (req, res) => {
+  // bcrypt.compare(
+  //   req.body.password,
+  //   "$2a$10$y5p9JgLUrvrFGKaVztsPmutrpj0GnS9VBbKUaLvc09VI5EGBPErg2", // whalers
+  //   function(err, res) {
+  //     if (res === true) {
+  //       console.log("password correct");
+  //     } else {
+  //       console.log("wrong password");
+  //     }
+  //   }
+  // );
+  
   if (
     req.body.email === db.users[0].email &&
     req.body.password === db.users[0].password
@@ -42,6 +64,14 @@ app.post("/signin", (req, res) => {
 
 app.post("/signup", (req, res) => {
   const { email, password, name } = req.body;
+
+  // bcrypt.genSalt(10, function(err, salt) {
+  //   bcrypt.hash(password, salt, function(err, hash) {
+  //     console.log(hash);
+  //     // Store hash in your password DB.
+  //   });
+  // });
+
   db.users.push({
     id: "345",
     name: name,
@@ -84,4 +114,4 @@ app.put("/image", (req, res) => {
   }
 });
 
-app.listen(3000);
+app.listen(3001);
