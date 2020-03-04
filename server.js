@@ -3,7 +3,7 @@ import cors from "cors";
 import handleSignin from "./controllers/signin.js";
 import handleSignup from "./controllers/signup.js";
 import handleProfileGet from "./controllers/profile.js";
-import handleImage from "./controllers/image.js";
+import {handleApiCall, handleImage} from "./controllers/image.js";
 // Allow the use of 'require' in ESM
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
@@ -32,5 +32,6 @@ app.post("/signin", handleSignin(db));
 app.post("/signup", handleSignup(db));
 app.get("/profile/:id", handleProfileGet(db));
 app.put("/image", handleImage(db));
+app.post("/imageUrl", handleApiCall);
 
 app.listen(3001);
