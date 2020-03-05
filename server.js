@@ -3,12 +3,8 @@ import cors from "cors";
 import handleSignin from "./controllers/signin.js";
 import handleSignup from "./controllers/signup.js";
 import handleProfileGet from "./controllers/profile.js";
-import {handleApiCall, handleImage} from "./controllers/image.js";
-// Allow the use of 'require' in ESM
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-
-const knex = require("knex");
+import { handleApiCall, handleImage } from "./controllers/image.js";
+import knex from "knex";
 
 const db = knex({
   client: "pg",

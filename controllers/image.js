@@ -1,12 +1,12 @@
 import Clarifai from "clarifai";
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-require('dotenv').config();
+// import { createRequire } from "module";
+// const require = createRequire(import.meta.url);
+// require('dotenv').config();
 
-const API_KEY = process.env.REACT_APP_CLARIFAI_API_KEY;
+// const API_KEY = process.env.REACT_APP_CLARIFAI_API_KEY;
 
 const app = new Clarifai.App({
-  apiKey: API_KEY
+  apiKey: "8446cfcdfae643959b93cbbbcb3cac02"
 });
 
 export const handleApiCall = (req, res) => {
