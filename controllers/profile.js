@@ -15,4 +15,6 @@ const handleProfileGet = (db) => (req, res)=> {
       .catch(err => res.json("Unexpected error while getting user"));
   }
 
-  export default handleProfileGet;
+  module.exports = {
+    handleProfileGet
+  }

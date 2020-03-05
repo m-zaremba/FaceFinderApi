@@ -1,14 +1,10 @@
-import express from "express";
-import cors from "cors";
-import handleSignin from "./controllers/signin.js";
-import handleSignup from "./controllers/signup.js";
-import handleProfileGet from "./controllers/profile.js";
-import {handleApiCall, handleImage} from "./controllers/image.js";
-// Allow the use of 'require' in ESM
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-
+const express = require("express");
+const cors = require("cors");
 const knex = require("knex");
+const signup = require('./controllers/signup');
+const signin = require('./controllers/signin');
+const profile = require('./controllers/profile');
+const image = require('./controllers/image');
 
 const db = knex({
   client: "pg",
@@ -26,12 +22,14 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send(db.users);
+  res.send("It is working");
 });
-app.post("/signin", handleSignin(db));
-app.post("/signup", handleSignup(db));
-app.get("/profile/:id", handleProfileGet(db));
-app.put("/image", handleImage(db));
-app.post("/imageUrl", handleApiCall);
+app.post("/signin", signin.handleSignin(db));
+app.post("/signup", signup.handleSignup(db));
+app.get("/profile/:id", profile.handleProfileGet(db));
+app.put("/image", image.handleImage(db));
+app.post("/imageUrl", image.handleApiCall);
 
-app.listen(3001);
+app.listen(process.env.PORT || 3001, () => {
+  console.log(`App is running on port: ${process.env.PORT}`);
+});

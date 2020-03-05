@@ -1,4 +1,4 @@
-import bcrypt from "bcryptjs";
+const bcrypt = require("bcryptjs");
 
 const handleSignup = db => (req, res) => {
   const { email, password, name } = req.body;
@@ -35,4 +35,6 @@ const handleSignup = db => (req, res) => {
   }).catch(err => res.status(404).json("Ups... Unable to register"));
 };
 
-export default handleSignup;
+module.exports = {
+  handleSignup: handleSignup
+};

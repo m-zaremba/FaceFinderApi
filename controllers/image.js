@@ -1,6 +1,4 @@
-import Clarifai from "clarifai";
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
+const Clarifai = require("clarifai");
 require('dotenv').config();
 
 const API_KEY = process.env.REACT_APP_CLARIFAI_API_KEY;
@@ -9,7 +7,7 @@ const app = new Clarifai.App({
   apiKey: API_KEY
 });
 
-export const handleApiCall = (req, res) => {
+const handleApiCall = (req, res) => {
   app.models
     .predict(Clarifai.FACE_DETECT_MODEL, req.body.input)
     .then(data => {
@@ -30,3 +28,8 @@ export const handleImage = db => (req, res) => {
     })
     .catch(err => res.status(404).json("Unable to update entries"));
 };
+
+module.exports = {
+  handleImage,
+  handleApiCall
+}
