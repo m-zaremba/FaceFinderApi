@@ -15,7 +15,7 @@ const handleApiCall = (req, res) => {
     .catch(err => res.status(400).json("Unable to work with the API"));
 };
 
-export const handleImage = db => (req, res) => {
+const handleImage = db => (req, res) => {
   const { id } = req.body;
 
   db("users")
