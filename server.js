@@ -30,4 +30,4 @@ app.get("/profile/:id", handleProfileGet(db));
 app.put("/image", handleImage(db));
 app.post("/imageUrl", handleApiCall);
 
-app.listen(3001);
+app.listen(process.evv.PORT || 3001);
