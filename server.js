@@ -28,6 +28,4 @@ app.get("/profile/:id", profile.handleProfileGet(db));
 app.put("/image", image.handleImage(db));
 app.post("/imageUrl", image.handleApiCall);
 
-app.listen(process.env.PORT || 3001, () => {
-  console.log(`App is running on port: ${process.env.PORT}`);
-});
+app.listen(process.env.PORT || 3001);
