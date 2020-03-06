@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 
-const handleSignin = (db) => (req, res) => {
-  const {email, password} = req.body;
+const handleSignin = db => (req, res) => {
+  const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json("incorrect credentials");
   }
@@ -28,4 +28,4 @@ const handleSignin = (db) => (req, res) => {
 
 module.exports = {
   handleSignin: handleSignin
-}
+};

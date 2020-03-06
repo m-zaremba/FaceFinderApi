@@ -1,9 +1,7 @@
 const Clarifai = require("clarifai");
-require('dotenv').config();
-
 
 const app = new Clarifai.App({
-  apiKey: "8446cfcdfae643959b93cbbbcb3cac02"
+  apiKey: process.env.CLARIFAI_API_KEY
 });
 
 const handleApiCall = (req, res) => {
@@ -31,4 +29,4 @@ const handleImage = db => (req, res) => {
 module.exports = {
   handleImage,
   handleApiCall
-}
+};
