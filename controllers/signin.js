@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const handleSignin = db => (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    return res.status(400).json("incorrect credentials");
+    return res.status(400).json("Wrong credentials");
   }
   db.select("email", "hash")
     .from("login")
@@ -20,10 +20,10 @@ const handleSignin = db => (req, res) => {
           })
           .catch(err => res.status(400).json("Unable to get user"));
       } else {
-        res.status(400).json("Wrong credentials");
+        res.status(400).json("Wrong password");
       }
     })
-    .catch(err => res.status(400).json("Wrong credentials"));
+    .catch(err => res.status(400).json('User not found'));
 };
 
 module.exports = {

@@ -32,7 +32,7 @@ const handleSignup = db => (req, res) => {
       })
       .then(trx.commit)
       .catch(trx.rollback);
-  }).catch(err => res.status(404).json("Ups... Unable to register"));
+  }).catch(err => res.status(404).json(err.constraint));
 };
 
 module.exports = {

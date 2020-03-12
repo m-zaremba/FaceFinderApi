@@ -44,3 +44,4 @@ For development you can use nodemon as start script - simply change package.json
     "start": "nodemon server.js"
   },
 ```
+
